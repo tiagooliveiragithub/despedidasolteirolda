@@ -1,6 +1,8 @@
 package com.tiago.despedidasolteirolda.entities;
 
-public abstract class Person {
+import java.io.Serializable;
+
+public abstract class Person implements Serializable {
     private String name;
     private String birthDate;
     private String address;
@@ -75,5 +77,18 @@ public abstract class Person {
 
     public void setPermissions(Permissions permissions) {
         this.permissions = permissions;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", birthDate='" + birthDate + '\'' +
+                ", address='" + address + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", NIF='" + NIF + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

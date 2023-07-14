@@ -1,5 +1,7 @@
 package com.tiago.despedidasolteirolda.entities;
 
-public class Client extends Person {
+import java.io.Serializable;
+
+public class Client extends Person implements Serializable {
 
 }
