@@ -15,6 +15,8 @@ public abstract class Person implements Serializable {
     public Person() {
     }
 
+    public abstract void create();
+
     public String getName() {
         return name;
     }

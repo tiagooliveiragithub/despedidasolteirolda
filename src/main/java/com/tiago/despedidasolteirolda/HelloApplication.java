@@ -2,6 +2,7 @@ package com.tiago.despedidasolteirolda;
 
 import com.tiago.despedidasolteirolda.data.FileManager;
 import com.tiago.despedidasolteirolda.entities.Admin;
+import com.tiago.despedidasolteirolda.entities.Person;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -24,12 +25,12 @@ public class HelloApplication extends Application {
         FileManager.deserialize("src\\main\\resources\\data\\info.repo");
         fl = FileManager.getFileManager();
         if(fl.getAdmins().size() == 0){
-            Admin c1 = new Admin();
-            c1.setName("Administrador");
-            c1.setNIF("274247264");
-            c1.setUsername("admin");
-            c1.setPassword("admin");
-            c1.createAdmin();
+            Person person = new Admin();
+            person.setName("Administrador");
+            person.setNIF("274247264");
+            person.setUsername("admin");
+            person.setPassword("admin");
+            person.create();
         }
         launch();
     }

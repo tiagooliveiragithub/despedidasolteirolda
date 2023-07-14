@@ -1,6 +1,6 @@
 package com.tiago.despedidasolteirolda.data;
 
-import com.tiago.despedidasolteirolda.entities.Admin;
+import com.tiago.despedidasolteirolda.entities.*;
 
 import java.io.*;
 import java.util.HashMap;
@@ -10,8 +10,16 @@ public class FileManager implements Serializable {
 
     private static FileManager fl = null;
     private Map<String, Admin> admins = new HashMap<>();
+    private Map<String, Client> clients = new HashMap<>();
+    private Map<String, Provider> providers = new HashMap<>();
+    private Map<String, Employee> employees = new HashMap<>();
+    private Map<String, Manager> managers = new HashMap<>();
 
     public Map<String, Admin> getAdmins() {return admins;}
+    public Map<String, Client> getClients() {return clients;}
+    public Map<String, Provider> getProviders() {return providers;}
+    public Map<String, Employee> getEmployees() {return employees;}
+    public Map<String, Manager> getManagers() {return managers;}
 
     public static FileManager getFileManager(){
 

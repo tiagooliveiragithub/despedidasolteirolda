@@ -5,10 +5,15 @@ import com.tiago.despedidasolteirolda.entities.Admin;
 import com.tiago.despedidasolteirolda.entities.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 
 public class LoginController {
@@ -51,6 +56,16 @@ public class LoginController {
 
     @FXML
     void register(MouseEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("register.fxml"));
+            Scene regCena = new Scene (root);
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(regCena);
+            stage.setTitle("Registar");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

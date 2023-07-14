@@ -4,47 +4,41 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tiago.despedidasolteirolda.controllers.LoginController">
+<AnchorPane prefHeight="465.0" prefWidth="776.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tiago.despedidasolteirolda.controllers.LoginController">
    <children>
-      <ImageView fitHeight="450.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true" />
-      <AnchorPane layoutX="383.0" layoutY="25.0" prefHeight="351.0" prefWidth="303.0">
+      <VBox alignment="CENTER" layoutX="210.0" layoutY="97.0" prefHeight="271.0" prefWidth="356.0" spacing="20.0">
          <children>
-            <TextField fx:id="usernameField" layoutX="39.0" layoutY="125.0" prefHeight="31.0" prefWidth="224.0" promptText="Nome de utilizador">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </TextField>
-            <PasswordField fx:id="passwordField" layoutX="39.0" layoutY="176.0" prefHeight="31.0" prefWidth="224.0" promptText="Palavra-chave">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </PasswordField>
-            <Button defaultButton="true" layoutX="16.0" layoutY="256.0" mnemonicParsing="false" onAction="#login" prefHeight="31.0" prefWidth="273.0" text="Entrar" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
-            <Label layoutX="95.0" layoutY="44.0" text="Iniciar Sessão">
+            <Label text="Iniciar Sessão">
                <font>
                   <Font size="19.0" />
                </font>
             </Label>
-            <Text layoutX="123.0" layoutY="318.0" onMouseClicked="#register" strokeType="OUTSIDE" strokeWidth="0.0" text="Criar conta">
+            <TextField fx:id="usernameField" prefHeight="31.0" prefWidth="224.0" promptText="Nome de utilizador">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="passwordField" prefHeight="31.0" prefWidth="224.0" promptText="Palavra-chave">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </PasswordField>
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#login" prefHeight="31.0" prefWidth="270.0" text="Entrar" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Text onMouseClicked="#register" strokeType="OUTSIDE" strokeWidth="0.0" text="Criar conta">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
             </Text>
          </children>
-      </AnchorPane>
-      <ImageView fitHeight="351.0" fitWidth="353.0" layoutX="21.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-
-         </image>
-      </ImageView>
+      </VBox>
    </children>
 </AnchorPane>
