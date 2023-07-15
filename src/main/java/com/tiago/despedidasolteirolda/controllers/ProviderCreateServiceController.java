@@ -10,7 +10,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -18,7 +17,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class CreateServiceController implements Initializable {
+public class ProviderCreateServiceController implements Initializable {
     private boolean durationStatus = false;
 
     @FXML
@@ -51,18 +50,20 @@ public class CreateServiceController implements Initializable {
     @FXML
     void createService(ActionEvent event) {
         if(verifyTextAreas()) {
-
             Service service = new Service();
-
             service.setName(nameField.getText());
             service.setPhoneNumber(Session.user.getPhoneNumber());
             service.setDuration(Integer.parseInt(durationField.getText()));
             service.setPrice(Float.parseFloat(priceField.getText()));
             service.setDescription(descriptionField.getText());
+            service.setLocal(locationBox.getValue());
+            Provider provider = (Provider) Session.user;
+            provider.getListServices().add(service);
+            service.setOwner(provider);
             service.create();
 
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("menuProvider.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("providerMenu.fxml"));
                 Scene menuScene = new Scene(root);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(menuScene);
@@ -83,7 +84,7 @@ public class CreateServiceController implements Initializable {
     @FXML
     void backScene(MouseEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("menuProvider.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("providerMenu.fxml"));
             Scene menuScene = new Scene (root);
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.setScene(menuScene);

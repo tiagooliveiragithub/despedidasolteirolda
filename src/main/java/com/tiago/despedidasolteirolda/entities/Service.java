@@ -1,28 +1,46 @@
 package com.tiago.despedidasolteirolda.entities;
 
 import com.tiago.despedidasolteirolda.data.FileManager;
+import com.tiago.despedidasolteirolda.entities.enums.Localidades;
 
 import java.io.Serializable;
+import java.util.Locale;
 
 public class Service implements Serializable {
+    private int id;
     private String name;
     private String phoneNumber;
     private int duration;
-    private String district;
-    private String locale;
+    private Localidades local;
     private float price;
     private int IVA;
     private String description;
     private boolean active;
+    private Person owner;
 
     public Service() {
         active = false;
     }
 
     public void create(){
-        FileManager.getFileManager().getServices().put(this.getPhoneNumber(), this);
+        id = FileManager.getFileManager().getServices().size();
+        FileManager.getFileManager().getServices().put(this.id, this);
         System.out.println("Serviço criado com sucesso!!!");
         FileManager.getFileManager().serialize("src\\main\\resources\\data\\info.repo");
+    }
+
+    public void update(){
+        FileManager.getFileManager().getServices().put(this.id, this);
+        System.out.println("Serviço criado com sucesso!!!");
+        FileManager.getFileManager().serialize("src\\main\\resources\\data\\info.repo");
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -49,20 +67,12 @@ public class Service implements Serializable {
         this.duration = duration;
     }
 
-    public String getDistrict() {
-        return district;
+    public Localidades getLocal() {
+        return local;
     }
 
-    public void setDistrict(String district) {
-        this.district = district;
-    }
-
-    public String getLocale() {
-        return locale;
-    }
-
-    public void setLocale(String locale) {
-        this.locale = locale;
+    public void setLocal(Localidades local) {
+        this.local = local;
     }
 
     public float getPrice() {
@@ -89,11 +99,24 @@ public class Service implements Serializable {
         this.description = description;
     }
 
-    public boolean isActive() {
+    public String isActive() {
+        if(active) return "Ativado";
+        else return "Desativado";
+    }
+
+    public Boolean getActive() {
         return active;
     }
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public Person getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Person owner) {
+        this.owner = owner;
     }
 }

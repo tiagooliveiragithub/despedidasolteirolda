@@ -8,7 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class MenuServiceController {
+public class ProviderMenuController {
 
     @FXML
     void createService(ActionEvent event) {
@@ -24,9 +24,9 @@ public class MenuServiceController {
     }
 
     @FXML
-    void listMarkings(ActionEvent event) {
+    void listServices(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("createService.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("providerListServices.fxml"));
             Scene listMarkingsScene = new Scene (root);
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.setScene(listMarkingsScene);

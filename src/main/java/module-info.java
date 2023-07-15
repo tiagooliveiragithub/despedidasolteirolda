@@ -1,4 +1,5 @@
 module com.tiago.despedidasolteirolda {
+    opens com.tiago.despedidasolteirolda.entities to javafx.base;
     requires javafx.controls;
     requires javafx.fxml;
         requires javafx.web;
