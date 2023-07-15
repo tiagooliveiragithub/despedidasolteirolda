@@ -1,6 +1,10 @@
 package com.tiago.despedidasolteirolda.entities;
 
-public class Service {
+import com.tiago.despedidasolteirolda.data.FileManager;
+
+import java.io.Serializable;
+
+public class Service implements Serializable {
     private String name;
     private String phoneNumber;
     private int duration;
@@ -9,8 +13,16 @@ public class Service {
     private float price;
     private int IVA;
     private String description;
+    private boolean active;
 
     public Service() {
+        active = false;
+    }
+
+    public void create(){
+        FileManager.getFileManager().getServices().put(this.getPhoneNumber(), this);
+        System.out.println("Serviço criado com sucesso!!!");
+        FileManager.getFileManager().serialize("src\\main\\resources\\data\\info.repo");
     }
 
     public String getName() {
@@ -75,5 +87,13 @@ public class Service {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

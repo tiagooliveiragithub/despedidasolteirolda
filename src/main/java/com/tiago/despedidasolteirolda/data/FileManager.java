@@ -14,12 +14,14 @@ public class FileManager implements Serializable {
     private Map<String, Provider> providers = new HashMap<>();
     private Map<String, Employee> employees = new HashMap<>();
     private Map<String, Manager> managers = new HashMap<>();
+    private Map<String, Service> services = new HashMap<>();
 
     public Map<String, Admin> getAdmins() {return admins;}
     public Map<String, Client> getClients() {return clients;}
     public Map<String, Provider> getProviders() {return providers;}
     public Map<String, Employee> getEmployees() {return employees;}
     public Map<String, Manager> getManagers() {return managers;}
+    public Map<String, Service> getServices() {return services;}
 
     public static FileManager getFileManager(){
 

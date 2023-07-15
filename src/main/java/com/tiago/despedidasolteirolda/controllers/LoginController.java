@@ -38,7 +38,11 @@ public class LoginController {
                     Session.setUser(admin);
                     System.out.println("Login com Sucesso!");
                     Session.setUser(admin);
-                    Session.printUser();
+                    Parent root = FXMLLoader.load(getClass().getResource("menuProvider.fxml"));
+                    Scene menuScene = new Scene(root);
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(menuScene);
+                    stage.show();
                 }
             }
             if(!found){
@@ -61,7 +65,6 @@ public class LoginController {
             Scene regCena = new Scene (root);
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.setScene(regCena);
-            stage.setTitle("Registar");
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();

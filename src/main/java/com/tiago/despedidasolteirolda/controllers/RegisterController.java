@@ -86,7 +86,6 @@ public class RegisterController implements Initializable {
                 Scene loginScene = new Scene(root);
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(loginScene);
-                stage.setTitle("Login");
                 stage.show();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -108,7 +107,6 @@ public class RegisterController implements Initializable {
             Scene loginScene = new Scene (root);
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.setScene(loginScene);
-            stage.setTitle("Login");
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
