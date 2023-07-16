@@ -13,7 +13,33 @@ public class ManagerMenuController {
     @FXML
     void listServices(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("listServices.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("managerListServices.fxml"));
+            Scene listServicesScene = new Scene (root);
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(listServicesScene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void listMarkings(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("managerListMarkings.fxml"));
+            Scene listMarkingsScene = new Scene (root);
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(listMarkingsScene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void aproveRegister(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("managerListRegister.fxml"));
             Scene listMarkingsScene = new Scene (root);
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.setScene(listMarkingsScene);

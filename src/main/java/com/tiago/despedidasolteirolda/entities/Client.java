@@ -1,12 +1,16 @@
 package com.tiago.despedidasolteirolda.entities;
 
 import com.tiago.despedidasolteirolda.data.FileManager;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 public class Client extends Person implements Serializable {
 
     public Client() {
+        super.setUserActive(false);
     }
 
     public void create(){
@@ -16,7 +20,8 @@ public class Client extends Person implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return super.getName();
+    public Parent loadMenu() throws IOException {
+        return FXMLLoader.load(getClass().getResource("/com/tiago/despedidasolteirolda/controllers/clientMenu.fxml"));
     }
+
 }

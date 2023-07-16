@@ -1,4 +1,4 @@
-package com.tiago.despedidasolteirolda.controllers;
+package com.tiago.despedidasolteirolda.controllers.user;
 
 import com.tiago.despedidasolteirolda.entities.*;
 import javafx.event.ActionEvent;

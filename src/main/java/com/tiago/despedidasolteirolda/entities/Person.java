@@ -1,5 +1,8 @@
 package com.tiago.despedidasolteirolda.entities;
 
+import javafx.scene.Parent;
+
+import java.io.IOException;
 import java.io.Serializable;
 
 public abstract class Person implements Serializable {
@@ -11,11 +14,18 @@ public abstract class Person implements Serializable {
     private String username;
     private String password;
     private Permissions permissions;
-
+    private Boolean userActive;
     public Person() {
+        userActive = true;
     }
 
+    public abstract Parent loadMenu() throws IOException;
+
     public abstract void create();
+
+    public void update() {
+        create();
+    }
 
     public String getName() {
         return name;
@@ -83,14 +93,19 @@ public abstract class Person implements Serializable {
 
     @Override
     public String toString() {
-        return "Person{" +
-                "name='" + name + '\'' +
-                ", birthDate='" + birthDate + '\'' +
-                ", address='" + address + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", NIF='" + NIF + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return name;
+    }
+
+    public Boolean getUserActive() {
+        return userActive;
+    }
+
+    public void setUserActive(Boolean userActive) {
+        this.userActive = userActive;
+    }
+
+    public String getUserActiveString() {
+        if (userActive) return "Ativado";
+        else return "Desativado";
     }
 }

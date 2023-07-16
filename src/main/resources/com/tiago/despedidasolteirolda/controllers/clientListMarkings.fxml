@@ -34,17 +34,17 @@
             </HBox>
             <HBox styleClass="search-bar">
                <children>
-                  <ComboBox fx:id="client" prefWidth="150.0" promptText="Estado">
+                  <ComboBox fx:id="states" prefWidth="150.0" promptText="Estado">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>
                   </ComboBox>
-                   <Button mnemonicParsing="false" text="PROCURAR">
+                   <Button mnemonicParsing="false" text="PROCURAR" onMouseClicked="#filterMarkings">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="LIMPAR" />
+                  <Button mnemonicParsing="false" text="LIMPAR" onMouseClicked="#filterClear"/>
                </children>
                <opaqueInsets>
                   <Insets />
@@ -60,22 +60,17 @@
                                 <PropertyValueFactory property="id" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn maxWidth="332.0" minWidth="46.0" prefWidth="220.0" text="Cliente">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="client" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn maxWidth="354.400146484375" minWidth="0.0" prefWidth="126.0" text="Preço Total">
+                        <TableColumn maxWidth="354.400146484375" minWidth="0.0" prefWidth="207.0" text="Preço Total">
                             <cellValueFactory>
                                 <PropertyValueFactory property="price" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn maxWidth="354.400146484375" minWidth="0.0" prefWidth="144.0" text="Estado">
+                        <TableColumn maxWidth="354.400146484375" minWidth="0.0" prefWidth="178.0" text="Estado">
                            <cellValueFactory>
-                              <PropertyValueFactory property="currentState" />
+                              <PropertyValueFactory property="markingStateString" />
                            </cellValueFactory>
                         </TableColumn>
-                        <TableColumn maxWidth="332.0" minWidth="46.0" prefWidth="128.0" text="Data prevista">
+                        <TableColumn maxWidth="376.0" minWidth="46.0" prefWidth="207.0" text="Data prevista">
                            <cellValueFactory>
                               <PropertyValueFactory property="markingDay" />
                            </cellValueFactory>

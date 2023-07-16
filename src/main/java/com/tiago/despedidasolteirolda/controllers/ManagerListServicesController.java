@@ -1,10 +1,7 @@
 package com.tiago.despedidasolteirolda.controllers;
 
 import com.tiago.despedidasolteirolda.data.FileManager;
-import com.tiago.despedidasolteirolda.entities.Person;
-import com.tiago.despedidasolteirolda.entities.Provider;
 import com.tiago.despedidasolteirolda.entities.Service;
-import com.tiago.despedidasolteirolda.entities.Session;
 import com.tiago.despedidasolteirolda.entities.enums.Localidades;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,10 +17,13 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
 
-public class ListServicesController implements Initializable {
+public class ManagerListServicesController implements Initializable {
 
     @FXML private TableView<Service> tableView;
     @FXML private ComboBox<Localidades> local;
+    @FXML private DatePicker startDateField;
+    @FXML private DatePicker endDateField;
+
     private Collection<Service> services = new HashSet<>();
 
     @Override
@@ -47,7 +47,6 @@ public class ListServicesController implements Initializable {
             alertStateChange.setTitle("Confirmação");
             alertStateChange.setHeaderText("Queres mesmo alterar o estado do serviço?");
             Optional<ButtonType> result = alertStateChange.showAndWait();
-
 
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 boolean currentState = service.getActive();
@@ -76,16 +75,35 @@ public class ListServicesController implements Initializable {
     @FXML
     void filterServices(MouseEvent event) {
         Localidades selectedLocation = local.getValue();
+        LocalDate startDate = startDateField.getValue();
+        LocalDate endDate = endDateField.getValue();
 
-        if (selectedLocation != null) {
-            Set<Service> filteredServices = new HashSet<>();
-            for (Service service : services) {
-                if (service.getLocal() == selectedLocation) {
-                    filteredServices.add(service);
-                }
+        // Check if any filters are selected
+        boolean hasLocationFilter = selectedLocation != null;
+        boolean hasStartDateFilter = startDate != null;
+        boolean hasEndDateFilter = endDate != null;
+
+        Set<Service> filteredServices = new HashSet<>();
+
+        for (Service service : services) {
+            // Check if the service matches the location filter
+            boolean locationMatch = !hasLocationFilter || service.getLocal() == selectedLocation;
+
+            // Check if the service has any markings that match the start date filter
+            boolean startDateMatch = !hasStartDateFilter || service.getMarkings().stream()
+                    .anyMatch(marking -> marking.getMarkingDay().isEqual(startDate) || marking.getMarkingDay().isAfter(startDate));
+
+            // Check if the service has any markings that match the end date filter
+            boolean endDateMatch = !hasEndDateFilter || service.getMarkings().stream()
+                    .anyMatch(marking -> marking.getMarkingDay().isEqual(endDate) || marking.getMarkingDay().isBefore(endDate.plusDays(1)));
+
+            if (locationMatch && startDateMatch && endDateMatch) {
+                filteredServices.add(service);
             }
-            tableView.getItems().setAll(filteredServices);
         }
+
+        // Update the TableView with the filtered services
+        tableView.getItems().setAll(filteredServices);
     }
 
     @FXML

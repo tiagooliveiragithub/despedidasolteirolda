@@ -18,8 +18,11 @@ public class Marking implements Serializable {
     private LocalDate markingDay;
     private Float price;
     private int rate;
+    private Set<Person> providers;
 
     public Marking() {
+        rate = -1;
+        providers = new HashSet<>();
         client = Session.user;
         servicesApplied = new HashSet<>();
         currentState = MarkingStates.PENDENT;
@@ -60,6 +63,11 @@ public class Marking implements Serializable {
         return servicesApplied;
     }
 
+    public void addServiceApplied(Service service) {
+        servicesApplied.add(service);
+        providers.add(service.getOwner());
+        service.getMarkings().add(this);
+    }
     public void setServicesApplied(Set<Service> servicesApplied) {
         this.servicesApplied = servicesApplied;
     }
@@ -84,9 +92,33 @@ public class Marking implements Serializable {
         return currentState;
     }
 
-    public void setCurrentState(MarkingStates newState) {
-        currentState = newState;
+    public void setCurrentState() {
+        MarkingStates[] states = MarkingStates.values();
+        int currentStateIndex = currentState.ordinal();
+
+        // Calculate the next state index, wrapping around if it reaches the end
+        int nextStateIndex = (currentStateIndex + 1) % states.length;
+
+        // Set the current state to the next state in the enum
+        currentState = states[nextStateIndex];
+
         markingHistoric.addState(currentState);
+    }
+
+    public int getRate() {
+        return rate;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
+    }
+
+    public Set<Person> getProviders() {
+        return providers;
+    }
+
+    public void setProviders(Set<Person> providers) {
+        this.providers = providers;
     }
 
     public float getPrice() {
@@ -96,4 +128,22 @@ public class Marking implements Serializable {
         }
         return total;
     }
+
+    public void setPrice(Float price) {
+        this.price = price;
+    }
+
+    public String getClientString() {
+       return client.getName();
+    }
+
+    public String getMarkingStateString() {
+        return currentState.getStateValue();
+    }
+
+    public String getRateString() {
+        if(rate == -1) return "Sem avaliação";
+        else return String.valueOf(rate);
+    }
+
 }

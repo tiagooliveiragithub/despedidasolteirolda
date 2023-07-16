@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
@@ -12,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="469.0" prefWidth="743.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="com.tiago.despedidasolteirolda.controllers.ListServicesController">
+<AnchorPane prefHeight="469.0" prefWidth="743.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tiago.despedidasolteirolda.controllers.ManagerListRegisterController">
    <children>
       <VBox layoutX="24.0" layoutY="18.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="373.0" prefWidth="643.0" styleClass="content-view">
          <children>
@@ -20,7 +19,7 @@
                <children>
                   <HBox styleClass="content-view-header" HBox.hgrow="ALWAYS">
                      <children>
-                         <Text layoutX="36.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lista de Serviços">
+                         <Text layoutX="36.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirmação de Registos">
                              <font>
                                  <Font name="Arial Bold" size="24.0" />
                              </font>
@@ -32,57 +31,44 @@
                   </HBox>
                </children>
             </HBox>
-            <HBox styleClass="search-bar">
-               <children>
-                  <ComboBox fx:id="local" prefWidth="150.0" promptText="Localidades">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
-                  </ComboBox>
-                   <Button mnemonicParsing="false" onMouseClicked="#filterServices" text="PROCURAR">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
-                  </Button>
-                   <Button mnemonicParsing="false" onMouseClicked="#filterClear" text="LIMPAR" />
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </HBox>
             <HBox prefHeight="31.0" prefWidth="643.0" />
             <VBox VBox.vgrow="ALWAYS">
                <children>
                   <TableView fx:id="tableView" prefHeight="289.0" prefWidth="586.0" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn maxWidth="139.0" minWidth="65.0" prefWidth="127.0" text="Nome">
+                        <TableColumn maxWidth="139.0" minWidth="65.0" prefWidth="96.0" text="Nome">
                             <cellValueFactory>
                                 <PropertyValueFactory property="name" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn maxWidth="271.2000198364258" minWidth="46.0" prefWidth="58.0" text="Duração">
+                        <TableColumn maxWidth="271.2000198364258" minWidth="46.0" prefWidth="111.0" text="Data Nascimento">
                             <cellValueFactory>
-                                <PropertyValueFactory property="duration" />
+                                <PropertyValueFactory property="birthDate" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn maxWidth="321.0666198730469" minWidth="21.5999755859375" prefWidth="143.0" text="Localização">
+                        <TableColumn maxWidth="321.0666198730469" minWidth="21.5999755859375" prefWidth="112.0" text="Morada">
                             <cellValueFactory>
-                                <PropertyValueFactory property="local" />
+                                <PropertyValueFactory property="address" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn maxWidth="393.5999755859375" minWidth="75.0" prefWidth="76.0" text="Preço">
+                        <TableColumn maxWidth="393.5999755859375" minWidth="61.0" prefWidth="77.0" text="Contacto">
                             <cellValueFactory>
-                                <PropertyValueFactory property="price" />
+                                <PropertyValueFactory property="phoneNumber" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn maxWidth="354.400146484375" minWidth="0.0" prefWidth="167.0" text="Descrição">
+                        <TableColumn maxWidth="354.400146484375" minWidth="0.0" prefWidth="74.0" text="NIF">
                             <cellValueFactory>
-                                <PropertyValueFactory property="description" />
+                                <PropertyValueFactory property="NIF" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn maxWidth="354.400146484375" minWidth="0.0" prefWidth="73.0" text="Estado">
+                        <TableColumn maxWidth="354.400146484375" minWidth="0.0" prefWidth="69.0" text="User">
                            <cellValueFactory>
-                              <PropertyValueFactory property="active" />
+                              <PropertyValueFactory property="username" />
+                           </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn maxWidth="354.400146484375" minWidth="0.0" prefWidth="103.0" text="Estado">
+                           <cellValueFactory>
+                              <PropertyValueFactory property="userActiveString" />
                            </cellValueFactory>
                         </TableColumn>
                     </columns>

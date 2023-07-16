@@ -13,12 +13,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -28,6 +30,8 @@ public class ProviderListServicesController implements Initializable {
 
     @FXML private TableView<Service> tableView;
     @FXML private ComboBox<Localidades> local;
+    @FXML private DatePicker startDateField;
+    @FXML private DatePicker endDateField;
     private HashSet<Service> services = new HashSet<>();
 
 
@@ -54,17 +58,35 @@ public class ProviderListServicesController implements Initializable {
     @FXML
     void filterServices(MouseEvent event) {
         Localidades selectedLocation = local.getValue();
+        LocalDate startDate = startDateField.getValue();
+        LocalDate endDate = endDateField.getValue();
 
-        if (selectedLocation != null) {
-            Set<Service> filteredServices = new HashSet<>();
+        // Check if any filters are selected
+        boolean hasLocationFilter = selectedLocation != null;
+        boolean hasStartDateFilter = startDate != null;
+        boolean hasEndDateFilter = endDate != null;
 
-            for (Service service : services) {
-                if (service.getLocal() == selectedLocation) {
-                    filteredServices.add(service);
-                }
+        Set<Service> filteredServices = new HashSet<>();
+
+        for (Service service : services) {
+            // Check if the service matches the location filter
+            boolean locationMatch = !hasLocationFilter || service.getLocal() == selectedLocation;
+
+            // Check if the service has any markings that match the start date filter
+            boolean startDateMatch = !hasStartDateFilter || service.getMarkings().stream()
+                    .anyMatch(marking -> marking.getMarkingDay().isEqual(startDate) || marking.getMarkingDay().isAfter(startDate));
+
+            // Check if the service has any markings that match the end date filter
+            boolean endDateMatch = !hasEndDateFilter || service.getMarkings().stream()
+                    .anyMatch(marking -> marking.getMarkingDay().isEqual(endDate) || marking.getMarkingDay().isBefore(endDate.plusDays(1)));
+
+            if (locationMatch && startDateMatch && endDateMatch) {
+                filteredServices.add(service);
             }
-            tableView.getItems().setAll(filteredServices);
         }
+
+        // Update the TableView with the filtered services
+        tableView.getItems().setAll(filteredServices);
     }
 
     @FXML

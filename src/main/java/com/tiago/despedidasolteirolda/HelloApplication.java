@@ -1,10 +1,7 @@
 package com.tiago.despedidasolteirolda;
 
 import com.tiago.despedidasolteirolda.data.FileManager;
-import com.tiago.despedidasolteirolda.entities.Admin;
-import com.tiago.despedidasolteirolda.entities.Client;
-import com.tiago.despedidasolteirolda.entities.Person;
-import com.tiago.despedidasolteirolda.entities.Provider;
+import com.tiago.despedidasolteirolda.entities.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,7 +12,7 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("controllers/login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("controllers/user/login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 750, 450);
         stage.setTitle("DespedidasSolteiroLda (BETA 0.1)");
         stage.setScene(scene);
@@ -49,6 +46,15 @@ public class HelloApplication extends Application {
             person.setNIF("274247262");
             person.setUsername("tiago");
             person.setPassword("tiago");
+            person.create();
+        }
+
+        if(fl.getManagers().size() == 0) {
+            Person person = new Manager();
+            person.setName("Rui");
+            person.setNIF("274247242");
+            person.setUsername("manager");
+            person.setPassword("manager");
             person.create();
         }
 

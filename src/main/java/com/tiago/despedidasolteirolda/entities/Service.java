@@ -4,7 +4,9 @@ import com.tiago.despedidasolteirolda.data.FileManager;
 import com.tiago.despedidasolteirolda.entities.enums.Localidades;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 
 public class Service implements Serializable {
     private int id;
@@ -17,8 +19,10 @@ public class Service implements Serializable {
     private String description;
     private boolean active;
     private Person owner;
+    private Set<Marking> markings;
 
     public Service() {
+        markings = new HashSet<>();
         active = false;
     }
 
@@ -99,11 +103,6 @@ public class Service implements Serializable {
         this.description = description;
     }
 
-    public String isActive() {
-        if(active) return "Ativado";
-        else return "Desativado";
-    }
-
     public Boolean getActive() {
         return active;
     }
@@ -118,5 +117,26 @@ public class Service implements Serializable {
 
     public void setOwner(Person owner) {
         this.owner = owner;
+    }
+
+    public Set<Marking> getMarkings() {
+        return markings;
+    }
+
+    public void setMarkings(Set<Marking> markings) {
+        this.markings = markings;
+    }
+
+    public int getMarkingsQuantity() {
+        return markings.size();
+    }
+
+    public String getActiveSting(){
+        if(active) return "Ativado";
+        else return "Desativado";
+    }
+
+    public String getLocalString() {
+        return local.getLabel();
     }
 }

@@ -1,6 +1,7 @@
 package com.tiago.despedidasolteirolda.controllers;
 
 import com.tiago.despedidasolteirolda.entities.Marking;
+import com.tiago.despedidasolteirolda.entities.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,35 +18,20 @@ public class ClientCreateMarkingController {
 
     @FXML
     void createMarking(ActionEvent event) {
-
-        if(dateField.getValue() != null) {
+        if (dateField.getValue() != null) {
             newMarking.setMarkingDay(dateField.getValue());
+            newMarking.setClient(Session.user);
             newMarking.create();
 
-            try {
-                Parent root = FXMLLoader.load(getClass().getResource("clientMenu.fxml"));
-                Scene listScene = new Scene (root);
-                Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                stage.setScene(listScene);
-                stage.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.close();
         }
-
     }
 
     @FXML
     void backScene(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("clientListServices.fxml"));
-            Scene listScene = new Scene (root);
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(listScene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.close();
     }
 
 }

@@ -18,7 +18,7 @@
             <Font name="Arial Bold" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="35.0" layoutY="152.0" mnemonicParsing="false" onMouseClicked="#backScene" prefHeight="38.0" prefWidth="99.0" text="Voltar">
+      <Button layoutX="35.0" layoutY="152.0" mnemonicParsing="false" onAction="#backScene" prefHeight="38.0" prefWidth="99.0" text="Voltar">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font>

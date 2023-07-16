@@ -15,4 +15,6 @@ module com.tiago.despedidasolteirolda {
 
     exports com.tiago.despedidasolteirolda.controllers to javafx.fxml;
     opens com.tiago.despedidasolteirolda.controllers to javafx.fxml;
+    exports com.tiago.despedidasolteirolda.controllers.user to javafx.fxml;
+    opens com.tiago.despedidasolteirolda.controllers.user to javafx.fxml;
 }

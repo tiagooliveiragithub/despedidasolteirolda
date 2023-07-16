@@ -91,7 +91,7 @@ public class ClientListServicesController implements Initializable {
             Marking newMarking = new Marking();
             // Process the selected entities here
             for (Service service : selectedItems) {
-                newMarking.getServicesApplied().add(service);
+                newMarking.addServiceApplied(service);
             }
 
             try {
