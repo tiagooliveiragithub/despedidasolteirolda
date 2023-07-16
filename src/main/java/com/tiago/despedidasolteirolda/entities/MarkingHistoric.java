@@ -2,11 +2,12 @@ package com.tiago.despedidasolteirolda.entities;
 
 import com.tiago.despedidasolteirolda.entities.enums.MarkingStates;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class MarkingHistoric {
+public class MarkingHistoric implements Serializable {
     private Map<MarkingStates, Date> stateHistory;
 
     public MarkingHistoric() {

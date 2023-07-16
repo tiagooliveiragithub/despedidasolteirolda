@@ -31,7 +31,7 @@ public class Service implements Serializable {
 
     public void update(){
         FileManager.getFileManager().getServices().put(this.id, this);
-        System.out.println("Serviço criado com sucesso!!!");
+        System.out.println("Serviço atualizada com sucesso!!!");
         FileManager.getFileManager().serialize("src\\main\\resources\\data\\info.repo");
     }
 

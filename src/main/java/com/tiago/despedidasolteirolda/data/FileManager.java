@@ -15,6 +15,7 @@ public class FileManager implements Serializable {
     private Map<String, Employee> employees = new HashMap<>();
     private Map<String, Manager> managers = new HashMap<>();
     private Map<Integer, Service> services = new HashMap<>();
+    private Map<Integer, Marking> markings = new HashMap<>();
 
     public Map<String, Admin> getAdmins() {return admins;}
     public Map<String, Client> getClients() {return clients;}
@@ -22,6 +23,7 @@ public class FileManager implements Serializable {
     public Map<String, Employee> getEmployees() {return employees;}
     public Map<String, Manager> getManagers() {return managers;}
     public Map<Integer, Service> getServices() {return services;}
+    public Map<Integer, Marking> getMarkings() {return markings;}
 
     public static FileManager getFileManager(){
 

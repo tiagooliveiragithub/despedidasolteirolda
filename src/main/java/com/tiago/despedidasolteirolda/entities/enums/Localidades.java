@@ -1,6 +1,8 @@
 package com.tiago.despedidasolteirolda.entities.enums;
 
-public enum Localidades {
+import java.io.Serializable;
+
+public enum Localidades implements Serializable {
     Aveiro("Aveiro"),
     Açores("Açores"),
     Beja("Beja"),

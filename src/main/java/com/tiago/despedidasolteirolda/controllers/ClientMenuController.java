@@ -8,25 +8,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class ProviderMenuController {
-
-    @FXML
-    void createService(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("providerCreateService.fxml"));
-            Scene createScene = new Scene (root);
-            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            stage.setScene(createScene);
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+public class ClientMenuController {
 
     @FXML
     void listServices(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("providerListServices.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("clientListServices.fxml"));
             Scene listScene = new Scene (root);
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.setScene(listScene);
@@ -38,5 +25,14 @@ public class ProviderMenuController {
 
     @FXML
     void listMarkings(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("clientListServices.fxml"));
+            Scene listScene = new Scene (root);
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            stage.setScene(listScene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

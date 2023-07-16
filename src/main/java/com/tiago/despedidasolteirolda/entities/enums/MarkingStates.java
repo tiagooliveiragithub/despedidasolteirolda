@@ -1,6 +1,8 @@
 package com.tiago.despedidasolteirolda.entities.enums;
 
-public enum MarkingStates {
+import java.io.Serializable;
+
+public enum MarkingStates implements Serializable {
     PENDENT,
     WAITING,
     FINISHED
