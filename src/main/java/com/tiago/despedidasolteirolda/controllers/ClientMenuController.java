@@ -26,7 +26,7 @@ public class ClientMenuController {
     @FXML
     void listMarkings(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("clientListServices.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("clientListMarkings.fxml"));
             Scene listScene = new Scene (root);
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.setScene(listScene);

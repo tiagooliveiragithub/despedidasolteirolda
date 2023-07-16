@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="469.0" prefWidth="743.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tiago.despedidasolteirolda.controllers.ClientListMarkingsController">
+<AnchorPane prefHeight="469.0" prefWidth="743.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="com.tiago.despedidasolteirolda.controllers.ListServicesController">
    <children>
       <VBox layoutX="24.0" layoutY="18.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="373.0" prefWidth="643.0" styleClass="content-view">
          <children>
@@ -20,7 +20,7 @@
                <children>
                   <HBox styleClass="content-view-header" HBox.hgrow="ALWAYS">
                      <children>
-                         <Text layoutX="36.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lista de Marcações">
+                         <Text layoutX="36.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lista de Serviços">
                              <font>
                                  <Font name="Arial Bold" size="24.0" />
                              </font>
@@ -34,17 +34,17 @@
             </HBox>
             <HBox styleClass="search-bar">
                <children>
-                  <ComboBox fx:id="client" prefWidth="150.0" promptText="Estado">
+                  <ComboBox fx:id="local" prefWidth="150.0" promptText="Localidades">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>
                   </ComboBox>
-                   <Button mnemonicParsing="false" text="PROCURAR">
+                   <Button mnemonicParsing="false" onMouseClicked="#filterServices" text="PROCURAR">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="LIMPAR" />
+                   <Button mnemonicParsing="false" onMouseClicked="#filterClear" text="LIMPAR" />
                </children>
                <opaqueInsets>
                   <Insets />
@@ -55,29 +55,34 @@
                <children>
                   <TableView fx:id="tableView" prefHeight="289.0" prefWidth="586.0" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn maxWidth="139.0" minWidth="35.0" prefWidth="43.0" text="ID">
+                        <TableColumn maxWidth="139.0" minWidth="65.0" prefWidth="127.0" text="Nome">
                             <cellValueFactory>
-                                <PropertyValueFactory property="id" />
+                                <PropertyValueFactory property="name" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn maxWidth="332.0" minWidth="46.0" prefWidth="220.0" text="Cliente">
+                        <TableColumn maxWidth="271.2000198364258" minWidth="46.0" prefWidth="58.0" text="Duração">
                             <cellValueFactory>
-                                <PropertyValueFactory property="client" />
+                                <PropertyValueFactory property="duration" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn maxWidth="354.400146484375" minWidth="0.0" prefWidth="126.0" text="Preço Total">
+                        <TableColumn maxWidth="321.0666198730469" minWidth="21.5999755859375" prefWidth="143.0" text="Localização">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="local" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn maxWidth="393.5999755859375" minWidth="75.0" prefWidth="76.0" text="Preço">
                             <cellValueFactory>
                                 <PropertyValueFactory property="price" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn maxWidth="354.400146484375" minWidth="0.0" prefWidth="144.0" text="Estado">
-                           <cellValueFactory>
-                              <PropertyValueFactory property="currentState" />
-                           </cellValueFactory>
+                        <TableColumn maxWidth="354.400146484375" minWidth="0.0" prefWidth="167.0" text="Descrição">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="description" />
+                            </cellValueFactory>
                         </TableColumn>
-                        <TableColumn maxWidth="332.0" minWidth="46.0" prefWidth="128.0" text="Data prevista">
+                        <TableColumn maxWidth="354.400146484375" minWidth="0.0" prefWidth="73.0" text="Estado">
                            <cellValueFactory>
-                              <PropertyValueFactory property="markingDay" />
+                              <PropertyValueFactory property="active" />
                            </cellValueFactory>
                         </TableColumn>
                     </columns>
@@ -95,7 +100,7 @@
             </VBox>
          </children>
       </VBox>
-      <Button layoutX="568.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#backScene" prefHeight="45.0" prefWidth="99.0" text="Voltar">
+      <Button layoutX="24.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#backScene" prefHeight="45.0" prefWidth="99.0" text="Voltar">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font>

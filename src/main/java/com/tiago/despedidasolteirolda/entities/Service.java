@@ -12,7 +12,7 @@ public class Service implements Serializable {
     private String phoneNumber;
     private int duration;
     private Localidades local;
-    private float price;
+    private double price;
     private int IVA;
     private String description;
     private boolean active;
@@ -75,11 +75,11 @@ public class Service implements Serializable {
         this.local = local;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

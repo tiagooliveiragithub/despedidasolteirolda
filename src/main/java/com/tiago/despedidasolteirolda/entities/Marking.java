@@ -4,6 +4,7 @@ import com.tiago.despedidasolteirolda.data.FileManager;
 import com.tiago.despedidasolteirolda.entities.enums.MarkingStates;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,7 +15,9 @@ public class Marking implements Serializable {
     private Set<Service> servicesApplied;
     private MarkingStates currentState;
     private MarkingHistoric markingHistoric;
-    private Date markingDay;
+    private LocalDate markingDay;
+    private Float price;
+    private int rate;
 
     public Marking() {
         client = Session.user;
@@ -69,11 +72,11 @@ public class Marking implements Serializable {
         this.markingHistoric = markingHistoric;
     }
 
-    public Date getMarkingDay() {
+    public LocalDate getMarkingDay() {
         return markingDay;
     }
 
-    public void setMarkingDay(Date markingDay) {
+    public void setMarkingDay(LocalDate markingDay) {
         this.markingDay = markingDay;
     }
 
@@ -84,5 +87,13 @@ public class Marking implements Serializable {
     public void setCurrentState(MarkingStates newState) {
         currentState = newState;
         markingHistoric.addState(currentState);
+    }
+
+    public float getPrice() {
+        float total = 0;
+        for(Service service: servicesApplied) {
+            total += service.getPrice() * 1.35;
+        }
+        return total;
     }
 }

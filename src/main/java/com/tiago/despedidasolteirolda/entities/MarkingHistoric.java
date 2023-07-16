@@ -22,4 +22,6 @@ public class MarkingHistoric implements Serializable {
     public Map<MarkingStates, Date> getStateHistory() {
         return stateHistory;
     }
+
+
 }

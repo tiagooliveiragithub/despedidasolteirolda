@@ -15,4 +15,8 @@ public class Client extends Person implements Serializable {
         FileManager.getFileManager().serialize("src\\main\\resources\\data\\info.repo");
     }
 
+    @Override
+    public String toString() {
+        return super.getName();
+    }
 }

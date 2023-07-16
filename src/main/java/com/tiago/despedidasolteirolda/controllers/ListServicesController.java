@@ -1,9 +1,11 @@
 package com.tiago.despedidasolteirolda.controllers;
 
 import com.tiago.despedidasolteirolda.data.FileManager;
+import com.tiago.despedidasolteirolda.entities.Person;
 import com.tiago.despedidasolteirolda.entities.Provider;
 import com.tiago.despedidasolteirolda.entities.Service;
 import com.tiago.despedidasolteirolda.entities.Session;
+import com.tiago.despedidasolteirolda.entities.enums.Localidades;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,26 +17,24 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.Collection;
-import java.util.Optional;
-import java.util.ResourceBundle;
-import java.util.Set;
+import java.time.LocalDate;
+import java.util.*;
 
-public class ManagerListServicesController implements Initializable {
+public class ListServicesController implements Initializable {
 
     @FXML private TableView<Service> tableView;
+    @FXML private ComboBox<Localidades> local;
+    private Collection<Service> services = new HashSet<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        FileManager fl = FileManager.getFileManager();
-        Collection<Service> services = fl.getServices().values();
-        tableView.getItems().setAll(services);
+        search();
 
         MenuItem editService = new MenuItem("Editar");
         editService.setOnAction(event -> {
             Service service = tableView.getSelectionModel().getSelectedItem();
             if (service != null) {
-               //fxWeaver.loadController(ProjectEditController.class).edit(project, this::save, clientService::findAll);
+
             }
         });
 
@@ -45,7 +45,7 @@ public class ManagerListServicesController implements Initializable {
 
             Alert alertStateChange = new Alert(Alert.AlertType.CONFIRMATION);
             alertStateChange.setTitle("Confirmação");
-            alertStateChange.setHeaderText("Queres alterar o estado do serviço?");
+            alertStateChange.setHeaderText("Queres mesmo alterar o estado do serviço?");
             Optional<ButtonType> result = alertStateChange.showAndWait();
 
 
@@ -58,6 +58,34 @@ public class ManagerListServicesController implements Initializable {
         });
         tableView.setContextMenu(new ContextMenu(editService, activeService));
 
+    }
+
+    void search() {
+        local.getItems().setAll(Localidades.values());
+        FileManager fl = FileManager.getFileManager();
+        Collection<Service> services = fl.getServices().values();
+        tableView.getItems().setAll(services);
+        this.services = services;
+    }
+
+    @FXML
+    void filterClear(MouseEvent event) {
+        tableView.getItems().setAll(services);
+    }
+
+    @FXML
+    void filterServices(MouseEvent event) {
+        Localidades selectedLocation = local.getValue();
+
+        if (selectedLocation != null) {
+            Set<Service> filteredServices = new HashSet<>();
+            for (Service service : services) {
+                if (service.getLocal() == selectedLocation) {
+                    filteredServices.add(service);
+                }
+            }
+            tableView.getItems().setAll(filteredServices);
+        }
     }
 
     @FXML

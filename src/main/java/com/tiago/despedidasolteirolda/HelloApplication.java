@@ -2,7 +2,9 @@ package com.tiago.despedidasolteirolda;
 
 import com.tiago.despedidasolteirolda.data.FileManager;
 import com.tiago.despedidasolteirolda.entities.Admin;
+import com.tiago.despedidasolteirolda.entities.Client;
 import com.tiago.despedidasolteirolda.entities.Person;
+import com.tiago.despedidasolteirolda.entities.Provider;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -32,6 +34,24 @@ public class HelloApplication extends Application {
             person.setPassword("admin");
             person.create();
         }
+        if(fl.getClients().size() == 0) {
+            Person person = new Client();
+            person.setName("Ricardo");
+            person.setNIF("274247264");
+            person.setUsername("ricardo");
+            person.setPassword("ricardo");
+            person.create();
+        }
+
+        if(fl.getProviders().size() == 0) {
+            Person person = new Provider();
+            person.setName("Tiago");
+            person.setNIF("274247262");
+            person.setUsername("tiago");
+            person.setPassword("tiago");
+            person.create();
+        }
+
         launch();
     }
 }

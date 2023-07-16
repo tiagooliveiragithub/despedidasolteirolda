@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="469.0" prefWidth="743.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tiago.despedidasolteirolda.controllers.ManagerListServicesController">
+<AnchorPane prefHeight="469.0" prefWidth="743.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tiago.despedidasolteirolda.controllers.ListMarkingsController">
    <children>
       <VBox layoutX="24.0" layoutY="18.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="373.0" prefWidth="643.0" styleClass="content-view">
          <children>
@@ -21,7 +21,7 @@
                <children>
                   <HBox styleClass="content-view-header" HBox.hgrow="ALWAYS">
                      <children>
-                         <Text layoutX="36.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lista de Serviços">
+                         <Text layoutX="36.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lista de Marcações">
                              <font>
                                  <Font name="Arial Bold" size="24.0" />
                              </font>
@@ -61,34 +61,24 @@
                <children>
                   <TableView fx:id="tableView" prefHeight="289.0" prefWidth="586.0" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn maxWidth="139.0" minWidth="65.0" prefWidth="127.0" text="Nome">
+                        <TableColumn maxWidth="139.0" minWidth="35.0" prefWidth="43.0" text="ID">
                             <cellValueFactory>
-                                <PropertyValueFactory property="name" />
+                                <PropertyValueFactory property="id" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn maxWidth="271.2000198364258" minWidth="46.0" prefWidth="58.0" text="Duração">
+                        <TableColumn maxWidth="332.0" minWidth="46.0" prefWidth="308.0" text="Cliente">
                             <cellValueFactory>
-                                <PropertyValueFactory property="duration" />
+                                <PropertyValueFactory property="client" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn maxWidth="321.0666198730469" minWidth="21.5999755859375" prefWidth="143.0" text="Localização">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="local" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn maxWidth="393.5999755859375" minWidth="75.0" prefWidth="76.0" text="Preço">
+                        <TableColumn maxWidth="354.400146484375" minWidth="0.0" prefWidth="145.0" text="Preço Total">
                             <cellValueFactory>
                                 <PropertyValueFactory property="price" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn maxWidth="354.400146484375" minWidth="0.0" prefWidth="167.0" text="Descrição">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="description" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn maxWidth="354.400146484375" minWidth="0.0" prefWidth="73.0" text="Estado">
+                        <TableColumn maxWidth="354.400146484375" minWidth="0.0" prefWidth="141.0" text="Estado">
                            <cellValueFactory>
-                              <PropertyValueFactory property="active" />
+                              <PropertyValueFactory property="currentState" />
                            </cellValueFactory>
                         </TableColumn>
                     </columns>
@@ -106,10 +96,15 @@
             </VBox>
          </children>
       </VBox>
-      <Button layoutX="24.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#backScene" prefHeight="45.0" prefWidth="99.0" text="Voltar">
+      <Button layoutX="568.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#backScene" prefHeight="45.0" prefWidth="99.0" text="Voltar">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font>
       </Button>
+       <Button fx:id="createButton" layoutX="429.0" layoutY="407.0" mnemonicParsing="false" onMouseClicked="#createEntity" prefHeight="45.0" prefWidth="134.0" text="Criar Marcação" visible="false">
+           <font>
+               <Font name="Arial Bold" size="12.0" />
+           </font>
+       </Button>
    </children>
 </AnchorPane>

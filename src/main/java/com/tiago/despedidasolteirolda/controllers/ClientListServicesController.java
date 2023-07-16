@@ -5,6 +5,7 @@ import com.tiago.despedidasolteirolda.entities.Marking;
 import com.tiago.despedidasolteirolda.entities.Provider;
 import com.tiago.despedidasolteirolda.entities.Service;
 import com.tiago.despedidasolteirolda.entities.Session;
+import com.tiago.despedidasolteirolda.entities.enums.Localidades;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -21,17 +22,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.Collection;
-import java.util.Optional;
-import java.util.ResourceBundle;
-import java.util.Set;
+import java.util.*;
 
 public class ClientListServicesController implements Initializable {
 
-    @FXML
-    private TableView<Service> tableView;
-    @FXML
-    private Button createButton;
+    @FXML private TableView<Service> tableView;
+    @FXML private Button createButton;
+    @FXML private ComboBox<Localidades> local;
+    private HashSet<Service> services = new HashSet<>();
+
 
     // Data structure to store selected services temporarily
     private ObservableList<Service> selectedServices = FXCollections.observableArrayList();
@@ -39,8 +38,7 @@ public class ClientListServicesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Collection<Service> services = FileManager.getFileManager().getServices().values();
-        tableView.getItems().setAll(services);
+        search();
 
         // Enable multiple selections in the TableView
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
@@ -49,6 +47,41 @@ public class ClientListServicesController implements Initializable {
             // Update the visibility of the createButton based on the number of selected items
             createButton.setVisible(tableView.getSelectionModel().getSelectedItems().size() > 0);
         });
+    }
+
+    void search() {
+        local.getItems().setAll(Localidades.values());
+        Collection<Service> services = FileManager.getFileManager().getServices().values();
+        HashSet<Service> servicesFilter = new HashSet<>();
+        for(Service service : services) {
+            if(service.getActive()) {
+                service.setPrice(service.getPrice() * 1.35);
+                servicesFilter.add(service);
+
+            }
+        }
+        tableView.getItems().setAll(servicesFilter);
+        this.services = servicesFilter;
+    }
+
+    @FXML
+    void filterClear(MouseEvent event) {
+        tableView.getItems().setAll(services);
+    }
+
+    @FXML
+    void filterServices(MouseEvent event) {
+        Localidades selectedLocation = local.getValue();
+
+        if (selectedLocation != null) {
+            Set<Service> filteredServices = new HashSet<>();
+            for (Service service : this.services) {
+                if (service.getLocal() == selectedLocation) {
+                    filteredServices.add(service);
+                }
+            }
+            tableView.getItems().setAll(filteredServices);
+        }
     }
 
     @FXML
@@ -61,14 +94,20 @@ public class ClientListServicesController implements Initializable {
                 newMarking.getServicesApplied().add(service);
             }
 
-            Alert alertMarkingCreation = new Alert(Alert.AlertType.CONFIRMATION);
-            alertMarkingCreation.setTitle("Confirmação");
-            alertMarkingCreation.setHeaderText("Pretendes mesmo criar uma marcação?");
-            Optional<ButtonType> result = alertMarkingCreation.showAndWait();
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("clientCreateMarking.fxml"));
+                Parent root = fxmlLoader.load();
+                Scene createScene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(createScene);
 
-            if (result.isPresent() && result.get() == ButtonType.OK) {
-                newMarking.create();
-                System.out.println("Marcação criada: " + newMarking.getServicesApplied().toString());
+                // Get the controller instance and set the newMarking
+                ClientCreateMarkingController markingController = fxmlLoader.getController();
+                markingController.newMarking = newMarking;
+
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
         }

@@ -5,7 +5,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -35,22 +34,17 @@
             </HBox>
             <HBox styleClass="search-bar">
                <children>
-                  <ComboBox fx:id="client" prefWidth="150.0" promptText="Estado">
+                  <ComboBox fx:id="local" prefWidth="150.0" promptText="Localidades">
                      <HBox.margin>
-                        <Insets right="4.0" />
+                        <Insets right="5.0" />
                      </HBox.margin>
                   </ComboBox>
-                  <TextField fx:id="nameSearch" promptText="Nome do serviço">
+                   <Button mnemonicParsing="false" text="PROCURAR" onMouseClicked="#filterServices">
                      <HBox.margin>
-                        <Insets left="197.0" />
-                     </HBox.margin>
-                  </TextField>
-                   <Button mnemonicParsing="false" text="PROCURAR">
-                     <HBox.margin>
-                        <Insets left="5.0" right="5.0" />
+                        <Insets right="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="LIMPAR" />
+                   <Button mnemonicParsing="false" onMouseClicked="#filterClear" text="LIMPAR" />
                </children>
                <opaqueInsets>
                   <Insets />
@@ -66,12 +60,12 @@
                                 <PropertyValueFactory property="name" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn maxWidth="271.2000198364258" minWidth="46.0" prefWidth="58.0" text="Duração">
+                        <TableColumn maxWidth="271.2000198364258" minWidth="46.0" prefWidth="114.0" text="Duração (min)">
                             <cellValueFactory>
                                 <PropertyValueFactory property="duration" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn maxWidth="321.0666198730469" minWidth="21.5999755859375" prefWidth="143.0" text="Localização">
+                        <TableColumn maxWidth="321.0666198730469" minWidth="21.5999755859375" prefWidth="114.0" text="Localização">
                             <cellValueFactory>
                                 <PropertyValueFactory property="local" />
                             </cellValueFactory>
@@ -85,11 +79,6 @@
                             <cellValueFactory>
                                 <PropertyValueFactory property="description" />
                             </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn maxWidth="354.400146484375" minWidth="0.0" prefWidth="73.0" text="Estado">
-                           <cellValueFactory>
-                              <PropertyValueFactory property="active" />
-                           </cellValueFactory>
                         </TableColumn>
                     </columns>
                      <columnResizePolicy>
